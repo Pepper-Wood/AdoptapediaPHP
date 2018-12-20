@@ -1,0 +1,2191 @@
+{
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": [
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-jaksn"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70007"
+            },
+            "id": "70007",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Jackson Square - Inbound",
+                "longitude": -71.099592,
+                "latitude": 42.323132
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-shmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70087"
+            },
+            "id": "70087",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Savin Hill - Outbound",
+                "longitude": -71.053331,
+                "latitude": 42.31129
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-wondl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70059"
+            },
+            "id": "70059",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Wonderland - Inbound",
+                "longitude": -70.991648,
+                "latitude": 42.41342
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-smmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70091"
+            },
+            "id": "70091",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Shawmut - Outbound",
+                "longitude": -71.06573796,
+                "latitude": 42.29312583
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-qamnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70104"
+            },
+            "id": "70104",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Quincy Adams - Inbound",
+                "longitude": -71.007153,
+                "latitude": 42.233391
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-harsq"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70067"
+            },
+            "id": "70067",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Harvard - Inbound",
+                "longitude": -71.118956,
+                "latitude": 42.373362
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-wondl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70060"
+            },
+            "id": "70060",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Wonderland - Outbound",
+                "longitude": -70.991648,
+                "latitude": 42.41342
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-welln"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70032"
+            },
+            "id": "70032",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Wellington - Inbound",
+                "longitude": -71.077082,
+                "latitude": 42.40237
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-sull"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70030"
+            },
+            "id": "70030",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Sullivan Square - Inbound",
+                "longitude": -71.076994,
+                "latitude": 42.383975
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-haecl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70024"
+            },
+            "id": "70024",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Haymarket - Orange Line Inbound",
+                "longitude": -71.05829,
+                "latitude": 42.363021
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-davis"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70063"
+            },
+            "id": "70063",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Davis - Inbound",
+                "longitude": -71.121815,
+                "latitude": 42.39674
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-ccmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70029"
+            },
+            "id": "70029",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Community College - Outbound",
+                "longitude": -71.069533,
+                "latitude": 42.373622
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-north"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70027"
+            },
+            "id": "70027",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "North Station - Orange Line Outbound",
+                "longitude": -71.06129,
+                "latitude": 42.365577
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-rcmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70009"
+            },
+            "id": "70009",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Roxbury Crossing - Inbound",
+                "longitude": -71.095451,
+                "latitude": 42.331397
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-jfk"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70096"
+            },
+            "id": "70096",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "JFK/UMASS Braintree - Inbound",
+                "longitude": -71.052391,
+                "latitude": 42.320685
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-pktrm"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70076"
+            },
+            "id": "70076",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Park Street - to Alewife",
+                "longitude": -71.0624242,
+                "latitude": 42.35639457
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-bomnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70038"
+            },
+            "id": "70038",
+            "attributes": {
+                "wheelchair_boarding": 2,
+                "name": "Bowdoin - Inbound",
+                "longitude": -71.062037,
+                "latitude": 42.361365
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-bbsta"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70015"
+            },
+            "id": "70015",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Back Bay - Inbound",
+                "longitude": -71.075727,
+                "latitude": 42.34735
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-rbmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70057"
+            },
+            "id": "70057",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Revere Beach - Inbound",
+                "longitude": -70.99253321,
+                "latitude": 42.40784254
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-aqucl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70044"
+            },
+            "id": "70044",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Aquarium - Outbound",
+                "longitude": -71.051652,
+                "latitude": 42.359784
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-ogmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70036"
+            },
+            "id": "70036",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Oak Grove",
+                "longitude": -71.071097,
+                "latitude": 42.43668
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-wimnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70050"
+            },
+            "id": "70050",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Wood Island - Outbound",
+                "longitude": -71.02286539,
+                "latitude": 42.3796403
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-pktrm"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70075"
+            },
+            "id": "70075",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Park Street - to Ashmont/Braintree",
+                "longitude": -71.0624242,
+                "latitude": 42.35639457
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-andrw"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70083"
+            },
+            "id": "70083",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Andrew - Outbound",
+                "longitude": -71.057655,
+                "latitude": 42.330154
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-smmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70092"
+            },
+            "id": "70092",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Shawmut - Inbound",
+                "longitude": -71.06573796,
+                "latitude": 42.29312583
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-jfk"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70086"
+            },
+            "id": "70086",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "JFK/UMASS Ashmont - Inbound",
+                "longitude": -71.052391,
+                "latitude": 42.320685
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-portr"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70066"
+            },
+            "id": "70066",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Porter - Outbound",
+                "longitude": -71.119149,
+                "latitude": 42.3884
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-mlmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70035"
+            },
+            "id": "70035",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Malden - Outbound",
+                "longitude": -71.07411,
+                "latitude": 42.426632
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-grnst"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70003"
+            },
+            "id": "70003",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Green Street - Inbound",
+                "longitude": -71.107414,
+                "latitude": 42.310525
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-rcmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70008"
+            },
+            "id": "70008",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Roxbury Crossing - Outbound",
+                "longitude": -71.095451,
+                "latitude": 42.331397
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-qnctr"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70102"
+            },
+            "id": "70102",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Quincy Center - Inbound",
+                "longitude": -71.005409,
+                "latitude": 42.251809
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-welln"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70033"
+            },
+            "id": "70033",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Wellington - Outbound",
+                "longitude": -71.077082,
+                "latitude": 42.40237
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-state"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70041"
+            },
+            "id": "70041",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "State Street - to Bowdoin",
+                "longitude": -71.057598,
+                "latitude": 42.358978
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-state"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70042"
+            },
+            "id": "70042",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "State Street - to Wonderland",
+                "longitude": -71.057598,
+                "latitude": 42.358978
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-chmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70074"
+            },
+            "id": "70074",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Charles/MGH - Outbound",
+                "longitude": -71.070628,
+                "latitude": 42.361166
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-tumnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70017"
+            },
+            "id": "70017",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Tufts Medical Center - Inbound",
+                "longitude": -71.063917,
+                "latitude": 42.349662
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-nqncy"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70098"
+            },
+            "id": "70098",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "North Quincy - Inbound",
+                "longitude": -71.029583,
+                "latitude": 42.275275
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-brntn"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70105"
+            },
+            "id": "70105",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Braintree",
+                "longitude": -71.0011385,
+                "latitude": 42.2078543
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-bmmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70055"
+            },
+            "id": "70055",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Beachmont - Inbound",
+                "longitude": -70.99231944,
+                "latitude": 42.39754234
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-sbmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70005"
+            },
+            "id": "70005",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Stony Brook - Inbound",
+                "longitude": -71.104248,
+                "latitude": 42.317062
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-bomnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70838"
+            },
+            "id": "70838",
+            "attributes": {
+                "wheelchair_boarding": 2,
+                "name": "Bowdoin - Outbound",
+                "longitude": -71.062037,
+                "latitude": 42.361365
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-grnst"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70002"
+            },
+            "id": "70002",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Green Street - Outbound",
+                "longitude": -71.107414,
+                "latitude": 42.310525
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-sdmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70054"
+            },
+            "id": "70054",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Suffolk Downs - Outbound",
+                "longitude": -70.99712259,
+                "latitude": 42.39050067
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-tumnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70016"
+            },
+            "id": "70016",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Tufts Medical Center - Outbound",
+                "longitude": -71.063917,
+                "latitude": 42.349662
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-bbsta"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70014"
+            },
+            "id": "70014",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Back Bay - Outbound",
+                "longitude": -71.075727,
+                "latitude": 42.34735
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-gover"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70039"
+            },
+            "id": "70039",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Government Center - to Bowdoin",
+                "longitude": -71.059215,
+                "latitude": 42.359705
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-asmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70093"
+            },
+            "id": "70093",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Ashmont - Outbound",
+                "longitude": -71.064489,
+                "latitude": 42.284652
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-mvbcl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70045"
+            },
+            "id": "70045",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Maverick - Inbound",
+                "longitude": -71.03952958,
+                "latitude": 42.36911856
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-astao"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70278"
+            },
+            "id": "70278",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Assembly - Inbound",
+                "longitude": -71.077257,
+                "latitude": 42.392811
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-forhl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70001"
+            },
+            "id": "70001",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Forest Hills Orange Line",
+                "longitude": -71.113686,
+                "latitude": 42.300523
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-brdwy"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70081"
+            },
+            "id": "70081",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Broadway - Outbound",
+                "longitude": -71.056967,
+                "latitude": 42.342622
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-rbmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70058"
+            },
+            "id": "70058",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Revere Beach - Outbound",
+                "longitude": -70.99253321,
+                "latitude": 42.40784254
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-dwnxg"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70077"
+            },
+            "id": "70077",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Downtown Crossing - to Ashmont/Braintree",
+                "longitude": -71.060225,
+                "latitude": 42.355518000000004
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-fldcr"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70090"
+            },
+            "id": "70090",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Fields Corner - Inbound",
+                "longitude": -71.061667,
+                "latitude": 42.300093
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-aport"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70048"
+            },
+            "id": "70048",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Airport - Outbound",
+                "longitude": -71.030395,
+                "latitude": 42.374262
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-state"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70022"
+            },
+            "id": "70022",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "State Street - to Forest Hills",
+                "longitude": -71.057598,
+                "latitude": 42.358978
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-rugg"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70010"
+            },
+            "id": "70010",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Ruggles - Outbound",
+                "longitude": -71.088961,
+                "latitude": 42.336377
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-haecl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70025"
+            },
+            "id": "70025",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Haymarket - Orange Line Outbound",
+                "longitude": -71.05829,
+                "latitude": 42.363021
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-mlmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70034"
+            },
+            "id": "70034",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Malden - Inbound",
+                "longitude": -71.07411,
+                "latitude": 42.426632
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-north"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70026"
+            },
+            "id": "70026",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "North Station - Orange Line Inbound",
+                "longitude": -71.06129,
+                "latitude": 42.365577
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-shmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70088"
+            },
+            "id": "70088",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Savin Hill - Inbound",
+                "longitude": -71.053331,
+                "latitude": 42.31129
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-brdwy"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70082"
+            },
+            "id": "70082",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Broadway - Inbound",
+                "longitude": -71.056967,
+                "latitude": 42.342622
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-sbmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70004"
+            },
+            "id": "70004",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Stony Brook - Outbound",
+                "longitude": -71.104248,
+                "latitude": 42.317062
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-dwnxg"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70021"
+            },
+            "id": "70021",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Downtown Crossing - to Oak Grove",
+                "longitude": -71.060225,
+                "latitude": 42.355518000000004
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-asmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70094"
+            },
+            "id": "70094",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Ashmont - Inbound",
+                "longitude": -71.064489,
+                "latitude": 42.284652
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-jaksn"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70006"
+            },
+            "id": "70006",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Jackson Square - Outbound",
+                "longitude": -71.099592,
+                "latitude": 42.323132
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-chmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70073"
+            },
+            "id": "70073",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Charles/MGH - Inbound",
+                "longitude": -71.070628,
+                "latitude": 42.361166
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-cntsq"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70069"
+            },
+            "id": "70069",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Central - Inbound",
+                "longitude": -71.103802,
+                "latitude": 42.365486
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-state"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70023"
+            },
+            "id": "70023",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "State Street - to Oak Grove",
+                "longitude": -71.057598,
+                "latitude": 42.358978
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-mvbcl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70046"
+            },
+            "id": "70046",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Maverick - Outbound",
+                "longitude": -71.03952958,
+                "latitude": 42.36911856
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-jfk"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70095"
+            },
+            "id": "70095",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "JFK/UMASS Braintree - Outbound",
+                "longitude": -71.052391,
+                "latitude": 42.320685
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-rugg"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70011"
+            },
+            "id": "70011",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Ruggles - Inbound",
+                "longitude": -71.088961,
+                "latitude": 42.336377
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-astao"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70279"
+            },
+            "id": "70279",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Assembly - Outbound",
+                "longitude": -71.077257,
+                "latitude": 42.392811
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-sstat"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70079"
+            },
+            "id": "70079",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "South Station - Outbound",
+                "longitude": -71.055242,
+                "latitude": 42.352271
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-alfcl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70061"
+            },
+            "id": "70061",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Alewife",
+                "longitude": -71.142483,
+                "latitude": 42.395428
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-andrw"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70084"
+            },
+            "id": "70084",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Andrew - Inbound",
+                "longitude": -71.057655,
+                "latitude": 42.330154
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-knncl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70072"
+            },
+            "id": "70072",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Kendall/MIT - Outbound",
+                "longitude": -71.08617653,
+                "latitude": 42.36249079
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-fldcr"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70089"
+            },
+            "id": "70089",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Fields Corner - Outbound",
+                "longitude": -71.061667,
+                "latitude": 42.300093
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-sstat"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70080"
+            },
+            "id": "70080",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "South Station - Inbound",
+                "longitude": -71.055242,
+                "latitude": 42.352271
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-qnctr"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70101"
+            },
+            "id": "70101",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Quincy Center - Outbound",
+                "longitude": -71.005409,
+                "latitude": 42.251809
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-aport"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70047"
+            },
+            "id": "70047",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Airport - Inbound",
+                "longitude": -71.030395,
+                "latitude": 42.374262
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-wimnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70049"
+            },
+            "id": "70049",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Wood Island - Inbound",
+                "longitude": -71.02286539,
+                "latitude": 42.3796403
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-chncl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70019"
+            },
+            "id": "70019",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Chinatown - Inbound",
+                "longitude": -71.062752,
+                "latitude": 42.352547
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-dwnxg"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70078"
+            },
+            "id": "70078",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Downtown Crossing - to Alewife",
+                "longitude": -71.060225,
+                "latitude": 42.355518000000004
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-davis"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70064"
+            },
+            "id": "70064",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Davis - Outbound",
+                "longitude": -71.121815,
+                "latitude": 42.39674
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-dwnxg"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70020"
+            },
+            "id": "70020",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Downtown Crossing - to Forest Hills",
+                "longitude": -71.060225,
+                "latitude": 42.355518000000004
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-sdmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70053"
+            },
+            "id": "70053",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Suffolk Downs - Inbound",
+                "longitude": -70.99712259,
+                "latitude": 42.39050067
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-portr"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70065"
+            },
+            "id": "70065",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Porter - Inbound",
+                "longitude": -71.119149,
+                "latitude": 42.3884
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-ccmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70028"
+            },
+            "id": "70028",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Community College - Inbound",
+                "longitude": -71.069533,
+                "latitude": 42.373622
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-qamnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70103"
+            },
+            "id": "70103",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Quincy Adams - Outbound",
+                "longitude": -71.007153,
+                "latitude": 42.233391
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-sull"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70031"
+            },
+            "id": "70031",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Sullivan Square - Outbound",
+                "longitude": -71.076994,
+                "latitude": 42.383975
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-harsq"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70068"
+            },
+            "id": "70068",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Harvard - Outbound",
+                "longitude": -71.118956,
+                "latitude": 42.373362
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-jfk"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70085"
+            },
+            "id": "70085",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "JFK/UMASS Ashmont - Outbound",
+                "longitude": -71.052391,
+                "latitude": 42.320685
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-gover"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70040"
+            },
+            "id": "70040",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Government Center - to Wonderland",
+                "longitude": -71.059215,
+                "latitude": 42.359705
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-knncl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70071"
+            },
+            "id": "70071",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Kendall/MIT - Inbound",
+                "longitude": -71.08617653,
+                "latitude": 42.36249079
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-cntsq"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70070"
+            },
+            "id": "70070",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Central - Outbound",
+                "longitude": -71.103802,
+                "latitude": 42.365486
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-aqucl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70043"
+            },
+            "id": "70043",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Aquarium - Inbound",
+                "longitude": -71.051652,
+                "latitude": 42.359784
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-chncl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70018"
+            },
+            "id": "70018",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Chinatown - Outbound",
+                "longitude": -71.062752,
+                "latitude": 42.352547
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-bmmnl"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70056"
+            },
+            "id": "70056",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Beachmont - Outbound",
+                "longitude": -70.99231944,
+                "latitude": 42.39754234
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-orhte"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70051"
+            },
+            "id": "70051",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Orient Heights - Inbound",
+                "longitude": -71.004736,
+                "latitude": 42.386867
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-nqncy"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70097"
+            },
+            "id": "70097",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "North Quincy - Outbound",
+                "longitude": -71.029583,
+                "latitude": 42.275275
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-masta"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70013"
+            },
+            "id": "70013",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Massachusetts Avenue - Inbound",
+                "longitude": -71.083423,
+                "latitude": 42.341512
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-orhte"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70052"
+            },
+            "id": "70052",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Orient Heights - Outbound",
+                "longitude": -71.004736,
+                "latitude": 42.386867
+            }
+        },
+        {
+            "type": "stop",
+            "relationships": {
+                "parent_station": {
+                    "data": {
+                        "type": "stop",
+                        "id": "place-masta"
+                    }
+                }
+            },
+            "links": {
+                "self": "/stops/70012"
+            },
+            "id": "70012",
+            "attributes": {
+                "wheelchair_boarding": 1,
+                "name": "Massachusetts Avenue - Outbound",
+                "longitude": -71.083423,
+                "latitude": 42.341512
+            }
+        }
+    ]
+}

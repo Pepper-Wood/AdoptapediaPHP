@@ -1,0 +1,12 @@
+body {
+    font-family: "Source Code Pro", monospace;
+    color: #cccccc;
+}
+.bg-dark {
+    background-color: #0f0f23 !important;
+}
+.navbar-dark .navbar-brand {
+    color: #00cc00;
+    text-shadow: 0 0 2px #00cc00, 0 0 5px #00cc00;
+    font-weight: normal;
+}

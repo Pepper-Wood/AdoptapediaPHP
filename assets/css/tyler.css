@@ -1,0 +1,31 @@
+body {
+	color: #FF0000;
+	background-image: url("../images/tylergif2.gif");
+	background-repeat: repeat;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+li .tylerbutton {
+	background: #000 url("../images/bg1.jpg") top left;
+	border: 6px ridge #bbb;
+	padding: 4px 12px;
+	font-size: 16px;
+	line-height: 20px;
+	color: #ffffff;
+	width: 100%;
+	text-shadow: 4px 4px 2px rgba(71, 200, 150, 1);
+}
+
+li .tylerbutton img {
+	width: 50px;
+	vertical-align: middle;
+}
+
+.tylerbutton:hover {
+	background: #000 url("../images/giphy.gif") top left;
+}
+
+.center {
+	text-align: center;
+	background:rgba(255,255,255,0.5);
+}
