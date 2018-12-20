@@ -1,2 +1,2 @@
-# Adoptapedia.Com
-New Repository for the adoptapedia.com website, branching off from the Adoptapedia Repository
+# AdoptapediaPHP
+My extended repository for my Siteground-hosted projects, such as Adoptapedia and TomoDATCHI.
