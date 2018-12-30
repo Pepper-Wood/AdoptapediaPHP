@@ -1,3 +1,8 @@
+<?php
+include_once('HIDDEN/DB_CONNECTIONS.php');
+$conn = OpenMainCon();
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -76,8 +81,6 @@ date_default_timezone_set("America/New_York");
             </thead>
             <tbody>
                 <?php
-                include_once('HIDDEN/DB_CONNECTIONS.php');
-                $conn = OpenMainCon();
                 $sql = "SELECT * FROM peadfinder ORDER BY pageid;";
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result) > 0) {

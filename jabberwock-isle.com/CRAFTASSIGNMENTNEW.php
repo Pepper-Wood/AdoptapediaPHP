@@ -4,7 +4,7 @@ session_start();
 include_once('../HIDDEN/DB_CONNECTIONS.php');
 $conn = OpenJabberwockCon();
 
-$debug = True;
+$debug = False;
 
 $sql = "SELECT * FROM recipes LEFT JOIN inventories ON inventories.itemid=recipes.ingredientid  AND inventories.ownerid=".$_SESSION['user']->getID()." WHERE recipes.recipeid=".$_POST['recipeID'].";";
 $result = mysqli_query($conn, $sql);

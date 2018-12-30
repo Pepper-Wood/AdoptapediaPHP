@@ -92,7 +92,7 @@ function getTeamCounts() {
     } else if ($teamType == 'reindeer') {
         $teamTypeStr = "reindeerGames";
     }
-    $sql = "SELECT ".$teamTypeStr." as teamType, COUNT(*) as numStudents FROM students WHERE isAlive=1 GROUP BY ".$teamTypeStr.";";
+    $sql = "SELECT ".$teamTypeStr." as teamType, COUNT(*) as numStudents FROM siteusersettings LEFT JOIN students ON students.studentid=siteusersettings.mainstudentid GROUP BY ".$teamTypeStr.";";
     $result = mysqli_query($conn, $sql);
     $teamCounts = array();
     if (mysqli_num_rows($result) > 0) {
