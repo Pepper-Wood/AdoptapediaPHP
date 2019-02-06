@@ -51,7 +51,7 @@ date_default_timezone_set("America/Los_Angeles");
 </style>
 
 <?php
-$teamType = "reindeer";
+$teamType = "classwars";
 if (isset($_GET['t'])) {
     $teamType = $_GET['t'];
 }
