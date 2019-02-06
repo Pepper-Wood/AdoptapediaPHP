@@ -42,6 +42,7 @@ function printNestedRecipe($conn, $userid, $ingredientid, $diff) {
 
 <h1 class="text-center">Hello, <?php echo $_SESSION['user']->getUsername()?>!</h1>
 <?php
+print_r($conn);
 $primaryStudentSql = mysqli_query($conn, "SELECT studentname FROM siteusersettings LEFT JOIN students ON students.studentid=siteusersettings.mainstudentid WHERE userid=".$_SESSION['user']->getID().";");
 $primaryStudentRow = mysqli_fetch_assoc($primaryStudentSql);
 ?>
