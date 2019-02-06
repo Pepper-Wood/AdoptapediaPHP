@@ -2,7 +2,8 @@
 require('../util/User.php');
 session_start();
 include_once('../HIDDEN/DB_CONNECTIONS.php');
-global $conn = OpenJabberwockCon();
+global $conn;
+$conn = OpenJabberwockCon();
 ?>
 
 <!DOCTYPE html>
