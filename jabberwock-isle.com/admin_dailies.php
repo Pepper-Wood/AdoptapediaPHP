@@ -33,6 +33,30 @@
 
 <div class="card">
     <div class="list-group-item horizontalFlex">
+        <div>Student of the Month</div>
+        <div style="display: inherit">
+            <select id="studentsOfTheMonth" class="form-control">
+                <?php
+                    $configs = include('adminconfig.php');
+                    $studentofthemonthid = (int) $configs['studentofthemonthid'];
+
+                    $sql = "SELECT * FROM students;";
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<option value='".$row['studentid']."'";
+                            if ($row['studentid'] == $studentofthemonthid) {
+                                echo " selected";
+                            }
+                            echo ">".$row['studentname']."</option>";
+                        }
+                    }
+                ?>
+            </select>
+            <button id="changeStudentOfTheMonth" class="btn btn-success" style="display:none"><i class="fas fa-check"></i></button>
+        </div>
+    </div>
+    <div class="list-group-item horizontalFlex">
         <div>Default Point Team</div>
         <div style="display: inherit">
             <select id="pointTeams" class="form-control">
@@ -105,6 +129,18 @@ $("#changeDefaultPointTeam").click(function() {
         $("#alertWarning").addClass("show");
         $("#alertWarningText").html("Default point team changed.");
         $("#changeDefaultPointTeam").hide();
+    });
+});
+$("#studentsOfTheMonth").change(function() {
+    $("#changeStudentOfTheMonth").show();
+});
+$("#changeStudentOfTheMonth").click(function() {
+    console.log($("#studentsOfTheMonth").val());
+    $.post("adminconfigrewrite.php", {adminkey: "studentofthemonthid", adminvalue: $("#studentsOfTheMonth").val()}, function(result) {
+        $("#alertWarning").css("display","block");
+        $("#alertWarning").addClass("show");
+        $("#alertWarningText").html("Student of the month changed.");
+        $("#changeStudentOfTheMonth").hide();
     });
 });
 </script>
