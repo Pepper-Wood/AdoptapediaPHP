@@ -40,286 +40,535 @@ function printNestedRecipe($conn, $userid, $ingredientid, $diff) {
 }
 ?>
 
-<h1 class="text-center">Hello, <?php echo $_SESSION['user']->getUsername()?>!</h1>
-<?php
-$primaryStudentSql = mysqli_query($conn, "SELECT studentname FROM siteusersettings LEFT JOIN students ON students.studentid=siteusersettings.mainstudentid WHERE userid=".$_SESSION['user']->getID().";");
-$primaryStudentRow = mysqli_fetch_assoc($primaryStudentSql);
-?>
-<p class="text-center">Your primary student is <u><?php echo $primaryStudentRow['studentname']; ?></u> <a href="javascript:void(0)" data-toggle="modal" data-target="#primaryStudentModal">[?]</a></p>
-
-<?php
-    $currmonocoinssql = mysqli_query($conn, "SELECT monocoins FROM siteusersettings WHERE userid=".$_SESSION['user']->getID().";");
-    $currmonocoinsrow = mysqli_fetch_assoc($currmonocoinssql);
-    $currmonocoins = $currmonocoinsrow['monocoins'];
-?>
-<div class="card alert-warning" style="display: inline-block;padding: 10px;width: 100%;text-align: center;">
-    You have <?php echo $currmonocoins; ?> <img src="https://orig00.deviantart.net/910f/f/2018/105/6/6/mbc2_by_bootsii-dc8xg2k.png">
-</div>
-
 <?php
 $timezonesql = mysqli_query($conn, "SELECT timezone FROM siteusersettings WHERE userid=".$_SESSION['user']->getID().";");
 $timezonerow = mysqli_fetch_assoc($timezonesql);
 $usertimezone = $timezonerow['timezone'];
 date_default_timezone_set($usertimezone);
-
-$sql = mysqli_query($conn, "SELECT itemname,isDone FROM weeklyuserassignments LEFT JOIN items ON items.itemid=weeklyuserassignments.recipeid WHERE ownerid=".$_SESSION['user']->getID().";");
-$row = mysqli_fetch_assoc($sql);
-if ($row['isDone'] == 0) {
-    $sunday = strtotime('next Sunday');
 ?>
 
-<div class="alert alert-warning" role="alert">
-    <div class="horizontalFlex">
-        <div>Your weekly crafting assignment is <b><?php echo $row['itemname']; ?></b>!</div>
-        <div id="assignmentCountdown">Loading...</div>
-    </div>
-</div>
-
-<script>
-var seconds = <?php echo ($sunday-time()); ?>;
-function timer() {
-    var days        = Math.floor(seconds/24/60/60);
-    var hoursLeft   = Math.floor((seconds) - (days*86400));
-    var hours       = Math.floor(hoursLeft/3600);
-    var minutesLeft = Math.floor((hoursLeft) - (hours*3600));
-    var minutes     = Math.floor(minutesLeft/60);
-    var remainingSeconds = seconds % 60;
-    if (remainingSeconds < 10) {
-        remainingSeconds = "0" + remainingSeconds;
-    }
-    if (hours < 10) {
-        hours = "0" + hours;
-    }
-    if (minutes < 10) {
-        minutes = "0" + minutes;
-    }
-    if (days == 1) {
-        $("#assignmentCountdown").html(days + " day " + hours + "h " + minutes + "m " + remainingSeconds + "s");
-    } else {
-        $("#assignmentCountdown").html(days + " days " + hours + "h " + minutes + "m " + remainingSeconds + "s");
-    }
-
-    if (seconds == 0) {
-        clearInterval(countdownTimer);
-        location.reload();
-    } else {
-        seconds--;
+<style>
+.tabNav {
+    overflow: auto;
+    white-space: nowrap;
+    display: block;
+    padding-left: 5px;
+    overflow-y: hidden;
+    font-family: GoodbyeDespair;
+    border-bottom: 0;
+}
+.nav-tabs .tabItem.show .tabLink, .nav-tabs .tabLink.active {
+    color: #000;
+}
+.nav-tabs .tabLink.active {
+    box-shadow: 0 1px 1px 0 rgba(60,64,67,.08), 0 1px 3px 1px rgba(60,64,67,.16);
+    transition: box-shadow 135ms cubic-bezier(.4,0,.2,1);
+    border: 0;
+}
+.nav-tabs .tabItem {
+    display: inline-block;
+    margin-right: 2px;
+}
+.nav-tabs .tabLink {
+    border-color: #e9ecef #e9ecef #dee2e6;
+}
+.studentTabIcon {
+    height: 33px;
+    display: inline-block;
+    object-fit: contain;
+}
+.studentTabIconBuffer {
+    margin-right: 5px;
+}
+.tabLink {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.primaryStudentTab {
+    background-color: rgba(255, 193, 7, 0.25);
+}
+.primaryStudentTab.active {
+    background-color: rgba(255, 193, 7, 1) !important;
+}
+.primaryStudentTextRow {
+    padding: 5px;
+    background-color: rgba(255, 193, 7, 1);
+}
+.deadStudentTab {
+    background-color: rgba(249, 215, 231, 0.25);
+    color: #ff2d7d;
+    text-decoration: line-through;
+}
+.deadStudentTab:hover {
+    color: #c72d68;
+    text-decoration: line-through;
+}
+.deadStudentTab.active {
+    background-color: rgba(249, 215, 231, 1) !important;
+    color: #ff2d7d !important;
+    text-decoration: line-through;
+}
+.deadStudentTextRow {
+    padding: 5px;
+    background-color: rgba(249, 215, 231, 1);
+    color: #ff2d7d;
+}
+.tab-pane {
+    background-color: #FFF;
+    box-shadow: 0 1px 1px 0 rgba(60,64,67,.08), 0 1px 3px 1px rgba(60,64,67,.16);
+    transition: box-shadow 135ms cubic-bezier(.4,0,.2,1);
+    margin-left: 5px;
+}
+.tab-pane-content {
+    padding: 5px;
+}
+.inventoryCard {
+    background-color: #909294;
+}
+.inventoryCell {
+    display: inline-block;
+    position: relative;
+}
+.inventoryQuantity {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #FFEB3B;
+    text-shadow: 1px 1px #1f2429;
+    font-family: GoodbyeDespair;
+    font-weight: bold;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    line-height: 15px;
+    border-radius: 50%;
+    font-size: 12px;
+}
+.giftsWrapper {
+    column-count: 3;
+    column-gap: 5px;
+}
+.weeklyAssignmentSubtitle {
+    margin: 0;
+    font-size: 12px;
+    font-weight: bold;
+}
+.weeklyAssignmentCraftConfirm {
+    color: #856404 !important;
+    background-color: #fff3cd !important;
+}
+.grayGiftRow {
+    background-color: #eee;
+}
+.recipeCardsWrapper {
+    column-count: 2;
+}
+@media only screen and (max-width: 768px) {
+    .recipeCardsWrapper {
+        column-count: 1;
     }
 }
-var countdownTimer = setInterval('timer()', 1000);
-</script>
-<?php
-} else {
-?>
-    <div class="alert alert-success" role="alert">
-        <div class="horizontalFlex">
-            <div>You completed your weekly crafting assignment: <b><?php echo $row['itemname']; ?></b></div>
-        </div>
-    </div>
-<?php
+.recipeCardsWrapper>.recipeCard {
+    display: inline-block;
+    width: 100%;
 }
-?>
+.recipeCard .card-body {
+    padding: 0.5rem;
+}
+.weeklyAssignmentDoubleSubtitle {
+    font-size: 12px;
+    font-style: italic;
+}
+.birthdayCard {
+    flex-direction: row;
+}
+</style>
 
-<?php
-$usersql = "SELECT * FROM siteusers WHERE type!='user' AND siteusers.userid=".$_SESSION['user']->getID().";";
-$userresult = mysqli_query($conn, $usersql);
-if (mysqli_num_rows($userresult) > 0) {
-    while ($userrow = mysqli_fetch_assoc($userresult)) { ?>
-        <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <div class="horizontalFlex inventorySectionTitle">
-                    <h4 style="margin:0">Inventory</h4>
-                    <div>
-                        <a href="javascript:void(0)" data-toggle="modal" data-target="#removeitemModal"><btn class="btn btn-danger btn-sm"><i class="fas fa-minus"></i></button></a>
-                        <a href="javascript:void(0)" data-toggle="modal" data-target="#additemModal"><btn class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></button></a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Raw</h5>
-                                <?php
-                                    $sql = "SELECT * FROM inventories,items WHERE inventories.itemid=items.itemid AND inventories.ownerid=".$userrow['userid']." AND type='c-raw' ORDER BY itemname;";
-                                    $result = mysqli_query($conn, $sql);
-                                    if (mysqli_num_rows($result) > 0) {
-                                        echo "<table class='table table-sm'><tbody>";
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                            if ($row['quantity'] > 0) {
-                                                echo "<tr><td>".$row['quantity']."</td><td>".$row['itemname']."</td></tr>";
-                                            }
-                                        }
-                                        echo "</tbody></table>";
-                                    } else {
-                                        echo "<p class='extraPadding'>You have no raw materials.</p>";
-                                    }
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Crafted <i class="far fa-star"></i></h5>
-                                <?php
-                                    $sql = "SELECT * FROM inventories,items WHERE inventories.itemid=items.itemid AND inventories.ownerid=".$userrow['userid']." AND type='b-craft' ORDER BY itemname;";
-                                    $result = mysqli_query($conn, $sql);
-                                    if (mysqli_num_rows($result) > 0) {
-                                        echo "<table class='table table-sm'><tbody>";
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                            if ($row['quantity'] > 0) {
-                                                echo "<tr><td>".$row['quantity']."</td><td>".$row['itemname']."</td></tr>";
-                                            }
-                                        }
-                                        echo "</tbody></table>";
-                                    }
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="row">
+    <div class="col-md-3">
+        <?php
+            $configs = include('adminconfig.php');
+            $studentofthemonthid = (int) $configs['studentofthemonthid'];
+            $studentofthemonthsql = mysqli_query($conn, "SELECT * FROM students WHERE studentid=".$studentofthemonthid.";");
+            $studentofthemonthrow = mysqli_fetch_assoc($studentofthemonthsql);
+        ?>
+        <p>Student of the Month</p>
+        <div class="card birthdayCard horizontalFlex">
+            <img src="studentsprites/originalsprites/<?php echo $studentofthemonthrow['studentsprite']; ?>">
+            <div class="birthdayInfo">
+                <div><?php echo $studentofthemonthrow['studentname']; ?></div>
             </div>
-            <div class="col-lg-3 col-md-3">
-                <div class="horizontalFlex inventorySectionTitle">
-                    <h4 style="margin:0">Crafting</h4>
-                    <div>
-                        <a href="javascript:void(0)" data-toggle="modal" data-target="#changeAssignmentsModal"><btn class="btn btn-success btn-sm"><i class="fas fa-plus"></i></button></a>
-                    </div>
-                </div>
-                <?php
-                    $sql = "SELECT * FROM assignments LEFT JOIN items ON assignments.recipeid=items.itemid WHERE ownerid=".$userrow['userid'].";";
-                    $result = mysqli_query($conn, $sql);
-                    if (mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) { ?>
-                            <div id='removeAssignment<?php echo $row['itemid']; ?>Card' class="card">
-                                <div class="card-body">
-                                    <?php $isCraftable = true; ?>
-                                    <div id='removeAssignment<?php echo $row['itemid']; ?>' class='closebtn removeAssignment'><i class='fas fa-times-circle'></i></div>
-                                    <h5 id="craftAssignmentName<?php echo $row['itemid']; ?>" class="card-title"><?php echo $row['itemname']; ?></h5>
-                                    <table class="table table-sm">
-                                        <tbody>
+        </div>
+        <p>Birthdays</p>
+        <?php
+        $birthdaysql = "SELECT studentname,studentsprite,birthday FROM students WHERE MONTH(birthday)=".date('m')." ORDER BY birthday;";
+        $birthdayresult = mysqli_query($conn, $birthdaysql);
+        if (mysqli_num_rows($birthdayresult) > 0) {
+            while ($birthdayrow = mysqli_fetch_assoc($birthdayresult)) {
+                echo "<div class='card birthdayCard horizontalFlex'>";
+                echo "<img src='studentsprites/originalsprites/".$birthdayrow['studentsprite']."'>";
+                echo "<div class='birthdayInfo'>";
+                echo "<div>".$birthdayrow['studentname']."</div>";
+                echo "<div>".date("jS", strtotime($birthdayrow['birthday']))."</div>";
+                echo "</div></div>";
+            }
+        }
+        ?>
+    </div>
+    <div class="col-md-9">
+        <ul class="nav nav-tabs tabNav" id="myTab" role="tablist">
+            <li class="nav-item tabItem">
+                <a class="nav-link active tabLink" id="inventoryTab" data-toggle="tab" href="#inventory" role="tab" aria-controls="inventory" aria-selected="true"><div class="studentTabIcon"></div><?php echo $_SESSION['user']->getUsername()?></a>
+            </li>
+            <?php
+            $primaryStudentSql = mysqli_query($conn, "SELECT studentid,studentname FROM siteusersettings LEFT JOIN students ON students.studentid=siteusersettings.mainstudentid WHERE userid=".$_SESSION['user']->getID().";");
+            $primaryStudentRow = mysqli_fetch_assoc($primaryStudentSql);
+            $sql = "SELECT * FROM students WHERE ownerid=".$_SESSION['user']->getID().";";
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo '<li class="nav-item tabItem">';
+                    echo '<a class="nav-link tabLink';
+                    if ($row['isAlive'] == 0) {
+                        echo ' deadStudentTab';
+                    }
+                    if ($primaryStudentRow['studentid'] == $row['studentid']) {
+                        echo ' primaryStudentTab';
+                    }
+                    echo '" id="student'.$row['studentid'].'Tab" data-toggle="tab" href="#student'.$row['studentid'].'" role="tab" aria-controls="student'.$row['studentid'].'" aria-selected="false"><img class="studentTabIcon studentTabIconBuffer" src="studentsprites/originalsprites/'.$row['studentsprite'].'"> '.$row['studentname'];
+                    echo '</a>';
+                    echo '</li>';
+                }
+            }
+            ?>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane show active" id="inventory" role="tabpanel" aria-labelledby="home-tab">
+                <div class="tab-pane-content">
+                    <?php
+                    $usersql = "SELECT * FROM siteusers WHERE type!='user' AND siteusers.userid=".$_SESSION['user']->getID().";";
+                    $userresult = mysqli_query($conn, $usersql);
+                    if (mysqli_num_rows($userresult) > 0) {
+                        while ($userrow = mysqli_fetch_assoc($userresult)) { ?>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="horizontalFlex inventorySectionTitle">
+                                        <h4 style="margin:0">Items</h4>
+                                        <div>
+                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#removeitemModal"><btn class="btn btn-danger btn-sm"><i class="fas fa-minus"></i></button></a>
+                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#additemModal"><btn class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></button></a>
+                                        </div>
+                                    </div>
+                                    <?php
+                                        $currmonocoinssql = mysqli_query($conn, "SELECT monocoins FROM siteusersettings WHERE userid=".$_SESSION['user']->getID().";");
+                                        $currmonocoinsrow = mysqli_fetch_assoc($currmonocoinssql);
+                                        $currmonocoins = $currmonocoinsrow['monocoins'];
+                                    ?>
+                                    <div class="card alert-warning" style="display: inline-block;padding: 10px;width: 100%;text-align: center;">
+                                        You have <?php echo $currmonocoins; ?> <img src="https://orig00.deviantart.net/910f/f/2018/105/6/6/mbc2_by_bootsii-dc8xg2k.png">
+                                    </div>
+                                    <div style="display: flex; flex-direction: column">
+                                        <?php
+                                            $unassignedgiftssql = "SELECT items.itemid, items.itemname, items.itemimage, inventories.quantity, inventories.quantity-(SELECT COUNT(*) FROM giftsinventories WHERE giftsinventories.userid=".$userrow['userid']." AND giftsinventories.itemid=items.itemid) AS frequency FROM inventories LEFT JOIN items ON inventories.itemid=items.itemid WHERE items.type='a-gift' AND inventories.ownerid=".$userrow['userid']." ORDER BY frequency DESC, inventories.itemid;";
+                                            $unassignedgiftsresult = mysqli_query($conn, $unassignedgiftssql);
+                                            $printedTitleCard = False;
+                                            if (mysqli_num_rows($unassignedgiftsresult) > 0) {
+                                                while ($unassignedgiftsrow = mysqli_fetch_assoc($unassignedgiftsresult)) {
+                                                    if ($unassignedgiftsrow['frequency'] > 0) {
+                                                        if (!$printedTitleCard) {
+                                                            echo '<div class="card" style="background-color: #f6d6e9; order: 1">';
+                                                            echo '<div class="giftCardTitleItem" style="background-color: #FE2181 !important"><h5 class="giftCardTitle">Unassigned</h5></div>';
+                                                            $printedTitleCard = True;
+                                                        }
+                                                        for ($j = 0; $j < $unassignedgiftsrow['frequency']; $j++) {
+                                                            echo '<div class="giftRow">';
+                                                            echo '  <div class="horizontalFlex">';
+                                                            echo '    <div class="giftImg"><img id="unassignedgift'.$unassignedgiftsrow['itemid'].'img" src="'.$unassignedgiftsrow['itemimage'].'"></div>';
+                                                            echo '    <div style="margin-right: 20px">';
+                                                            echo '      <span id="unassignedgift'.$unassignedgiftsrow['itemid'].'itemname">'.$unassignedgiftsrow['itemname'].'</span>';
+                                                            echo '      <a id="unassignedgift'.$unassignedgiftsrow['itemid'].'" class="giftAssignModalTrigger" href="javascript:void(0)" data-toggle="modal" data-target="#assignGiftModal"><i class="fas fa-plus"></i></a>';
+                                                            echo '    </div>';
+                                                            echo '  </div>';
+                                                            echo '</div>';
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            if ($printedTitleCard) {
+                                                echo '</div>';
+                                            }
+                                        ?>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-body inventoryCard">
                                             <?php
-                                                $recipesql = "SELECT quantity,ingredientquantity,itemname,items.itemid as itemid,type,ingredientid FROM recipes LEFT JOIN items ON items.itemid=recipes.ingredientid LEFT JOIN inventories ON inventories.itemid=recipes.ingredientid  AND inventories.ownerid=".$userrow['userid']." WHERE recipes.recipeid=".$row['recipeid']." ORDER BY items.itemname;";
-                                                $reciperesult = mysqli_query($conn, $recipesql);
-                                                if (mysqli_num_rows($reciperesult) > 0) {
-                                                    while ($reciperow = mysqli_fetch_assoc($reciperesult)) {
-                                                        echo "<tr class='";
-                                                        $diff = 0;
-                                                        if ($reciperow['quantity'] >= $reciperow['ingredientquantity']) {
-                                                            echo "table-success";
-                                                        } else {
-                                                            echo "bg-danger";
-                                                            $diff = $reciperow['ingredientquantity'] - $reciperow['quantity'];
-                                                            $isCraftable = false;
-                                                        }
-                                                        if ($reciperow['quantity'] == null) {
-                                                            echo "'><td>0/".$reciperow['ingredientquantity']."</td><td>";
-                                                        } else {
-                                                            echo "'><td>".$reciperow['quantity']."/".$reciperow['ingredientquantity']."</td><td>";
-                                                        }
-                                                        if ($reciperow['type'] == 'b-craft') {
-                                                            echo "<b>";
-                                                        }
-                                                        if ($reciperow['quantity'] < $reciperow['ingredientquantity']) {
-                                                            echo "<a class='scavengerLink' target='_blank' href='https://jabberwock-isle.com/itemsearch.php?iid=".$reciperow['itemid']."'>";
-                                                        }
-                                                        echo $reciperow['itemname'];
-                                                        if ($reciperow['quantity'] < $reciperow['ingredientquantity']) {
-                                                            echo "</a>";
-                                                        }
-                                                        if ($reciperow['type'] == 'b-craft') {
-                                                            echo " <i class='far fa-star'></i></b>";
-                                                            if ($diff > 0) {
-                                                                printNestedRecipe($conn, $userrow['userid'], $reciperow['ingredientid'], $diff);
+                                                $sql = "SELECT * FROM inventories,items WHERE inventories.itemid=items.itemid AND inventories.ownerid=".$userrow['userid']." AND type='b-craft' ORDER BY itemname;";
+                                                $result = mysqli_query($conn, $sql);
+                                                if (mysqli_num_rows($result) > 0) {
+                                                    while ($row = mysqli_fetch_assoc($result)) {
+                                                        if ($row['quantity'] > 0) {
+                                                            echo '<a href="javascript:void(0)" data-toggle="tooltip" title="" data-original-title="'.$row['itemname'].'"><div class="inventoryCell">';
+                                                            if ($row['itemimage'] == null) {
+                                                                echo "<img class='fullWidth' src='https://orig00.deviantart.net/a334/f/2018/305/9/2/useless_poo_by_yapipo-dcqw1w9.png'> ";
+                                                            } else {
+                                                                echo "<img class='fullWidth' src='".$row['itemimage']."'> ";
                                                             }
+                                                            echo '<span class="inventoryQuantity">'.$row['quantity'].'</span></div></a>';
                                                         }
-                                                        echo "</td></tr>";
+                                                    }
+                                                }
+                                                echo "<hr>";
+                                                $sql = "SELECT * FROM inventories,items WHERE inventories.itemid=items.itemid AND inventories.ownerid=".$userrow['userid']." AND type='c-raw' ORDER BY itemname;";
+                                                $result = mysqli_query($conn, $sql);
+                                                if (mysqli_num_rows($result) > 0) {
+                                                    while ($row = mysqli_fetch_assoc($result)) {
+                                                        if ($row['quantity'] > 0) {
+                                                            echo '<a href="javascript:void(0)" data-toggle="tooltip" title="" data-original-title="'.$row['itemname'].'"><div class="inventoryCell">';
+                                                            if ($row['itemimage'] == null) {
+                                                                echo "<img class='fullWidth' src='https://orig00.deviantart.net/a334/f/2018/305/9/2/useless_poo_by_yapipo-dcqw1w9.png'> ";
+                                                            } else {
+                                                                echo "<img class='fullWidth' src='".$row['itemimage']."'> ";
+                                                            }
+                                                            echo '<span class="inventoryQuantity">'.$row['quantity'].'</span></div></a>';
+                                                        }
                                                     }
                                                 }
                                             ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <?php if ($isCraftable) { ?>
-                                    <div class="list-group-item">
-                                        <a id="craftAssignment<?php echo $row['itemid']; ?>" href="javascript:void(0)" data-toggle="modal" data-target="#confirmCraftingModal" class="btn btn-sm btn-block card-link craftAssignment">Craft Item</a>
+                                        </div>
                                     </div>
-                                <?php } ?>
+                                </div>
+                                <div class="col-lg-8 col-md-8">
+                                    <div class="horizontalFlex inventorySectionTitle">
+                                        <h4 style="margin:0">Crafting</h4>
+                                        <div>
+                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#changeAssignmentsModal"><btn class="btn btn-success btn-sm"><i class="fas fa-plus"></i></button></a>
+                                        </div>
+                                    </div>
+                                    <div class="recipeCardsWrapper">
+                                        <?php
+                                        $weeklyassignmentsql = mysqli_query($conn, "SELECT itemid,itemname,isDone FROM weeklyuserassignments LEFT JOIN items ON items.itemid=weeklyuserassignments.recipeid WHERE ownerid=".$_SESSION['user']->getID().";");
+                                        $weeklyassignmentrow = mysqli_fetch_assoc($weeklyassignmentsql);
+                                        if ($weeklyassignmentrow['isDone'] == 0) {
+                                            $sunday = strtotime('next Sunday');
+                                        ?>
+                                        <div class="recipeCard"><div class="card alert-warning">
+                                            <div class="card-body">
+                                                <?php $isCraftable = true; ?>
+                                                <p class="weeklyAssignmentSubtitle">Weekly Assignment</p>
+                                                <div id="assignmentCountdown" class="weeklyAssignmentDoubleSubtitle">Loading...</div>
+                                                <h5 id="craftAssignmentName<?php echo $weeklyassignmentrow['itemid']; ?>" class="card-title"><?php echo $weeklyassignmentrow['itemname']; ?></h5>
+                                                <table class="table table-sm">
+                                                    <tbody>
+                                                        <?php
+                                                            $recipesql = "SELECT quantity,ingredientquantity,itemname,items.itemid as itemid,type,ingredientid FROM recipes LEFT JOIN items ON items.itemid=recipes.ingredientid LEFT JOIN inventories ON inventories.itemid=recipes.ingredientid  AND inventories.ownerid=".$userrow['userid']." WHERE recipes.recipeid=".$weeklyassignmentrow['itemid']." ORDER BY items.itemname;";
+                                                            $reciperesult = mysqli_query($conn, $recipesql);
+                                                            if (mysqli_num_rows($reciperesult) > 0) {
+                                                                while ($reciperow = mysqli_fetch_assoc($reciperesult)) {
+                                                                    echo "<tr class='";
+                                                                    $diff = 0;
+                                                                    if ($reciperow['quantity'] >= $reciperow['ingredientquantity']) {
+                                                                        echo "table-success";
+                                                                    } else {
+                                                                        echo "bg-danger";
+                                                                        $diff = $reciperow['ingredientquantity'] - $reciperow['quantity'];
+                                                                        $isCraftable = false;
+                                                                    }
+                                                                    if ($reciperow['quantity'] == null) {
+                                                                        echo "'><td>0/".$reciperow['ingredientquantity']."</td><td>";
+                                                                    } else {
+                                                                        echo "'><td>".$reciperow['quantity']."/".$reciperow['ingredientquantity']."</td><td>";
+                                                                    }
+                                                                    if ($reciperow['type'] == 'b-craft') {
+                                                                        echo "<b>";
+                                                                    }
+                                                                    if ($reciperow['quantity'] < $reciperow['ingredientquantity']) {
+                                                                        echo "<a class='scavengerLink' target='_blank' href='https://jabberwock-isle.com/itemsearch.php?iid=".$reciperow['itemid']."'>";
+                                                                    }
+                                                                    echo $reciperow['itemname'];
+                                                                    if ($reciperow['quantity'] < $reciperow['ingredientquantity']) {
+                                                                        echo "</a>";
+                                                                    }
+                                                                    if ($reciperow['type'] == 'b-craft') {
+                                                                        echo " <i class='far fa-star'></i></b>";
+                                                                        if ($diff > 0) {
+                                                                            printNestedRecipe($conn, $userrow['userid'], $reciperow['ingredientid'], $diff);
+                                                                        }
+                                                                    }
+                                                                    echo "</td></tr>";
+                                                                }
+                                                            }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <?php if ($isCraftable) { ?>
+                                                <div class="list-group-item  weeklyAssignmentCraftConfirm">
+                                                    <a id="craftAssignment<?php echo $weeklyassignmentrow['itemid']; ?>" href="javascript:void(0)" data-toggle="modal" data-target="#confirmCraftingModal" class="btn btn-sm btn-block card-link craftAssignment">Craft Item</a>
+                                                </div>
+                                            <?php } ?>
+                                        </div></div>
+
+                                        <script>
+                                        var seconds = <?php echo ($sunday-time()); ?>;
+                                        function timer() {
+                                            var days        = Math.floor(seconds/24/60/60);
+                                            var hoursLeft   = Math.floor((seconds) - (days*86400));
+                                            var hours       = Math.floor(hoursLeft/3600);
+                                            var minutesLeft = Math.floor((hoursLeft) - (hours*3600));
+                                            var minutes     = Math.floor(minutesLeft/60);
+                                            var remainingSeconds = seconds % 60;
+                                            if (remainingSeconds < 10) {
+                                                remainingSeconds = "0" + remainingSeconds;
+                                            }
+                                            if (hours < 10) {
+                                                hours = "0" + hours;
+                                            }
+                                            if (minutes < 10) {
+                                                minutes = "0" + minutes;
+                                            }
+                                            if (days == 1) {
+                                                $("#assignmentCountdown").html(days + " day " + hours + "h " + minutes + "m " + remainingSeconds + "s");
+                                            } else {
+                                                $("#assignmentCountdown").html(days + " days " + hours + "h " + minutes + "m " + remainingSeconds + "s");
+                                            }
+
+                                            if (seconds == 0) {
+                                                clearInterval(countdownTimer);
+                                                location.reload();
+                                            } else {
+                                                seconds--;
+                                            }
+                                        }
+                                        var countdownTimer = setInterval('timer()', 1000);
+                                        </script>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <div class="recipeCard"><div class="card alert-success">
+                                                <div class="card-body">
+                                                    <?php $isCraftable = true; ?>
+                                                    <p class="weeklyAssignmentSubtitle">Weekly Assignment</p>
+                                                    <div id="assignmentCountdown" class="weeklyAssignmentDoubleSubtitle">Completed</div>
+                                                    <h5 class="card-title"><?php echo $weeklyassignmentrow['itemname']; ?></h5>
+                                                </div>
+                                            </div></div>
+                                        <?php
+                                        }
+                                        ?>
+
+                                        <?php
+                                            $sql = "SELECT * FROM assignments LEFT JOIN items ON assignments.recipeid=items.itemid WHERE ownerid=".$userrow['userid'].";";
+                                            $result = mysqli_query($conn, $sql);
+                                            if (mysqli_num_rows($result) > 0) {
+                                                while ($row = mysqli_fetch_assoc($result)) { ?>
+                                                    <div class="recipeCard"><div id='removeAssignment<?php echo $row['itemid']; ?>Card' class="card">
+                                                        <div class="card-body">
+                                                            <?php $isCraftable = true; ?>
+                                                            <div id='removeAssignment<?php echo $row['itemid']; ?>' class='closebtn removeAssignment'><i class='fas fa-times-circle'></i></div>
+                                                            <h5 id="craftAssignmentName<?php echo $row['itemid']; ?>" class="card-title"><?php echo $row['itemname']; ?></h5>
+                                                            <table class="table table-sm">
+                                                                <tbody>
+                                                                    <?php
+                                                                        $recipesql = "SELECT quantity,ingredientquantity,itemname,items.itemid as itemid,type,ingredientid FROM recipes LEFT JOIN items ON items.itemid=recipes.ingredientid LEFT JOIN inventories ON inventories.itemid=recipes.ingredientid  AND inventories.ownerid=".$userrow['userid']." WHERE recipes.recipeid=".$row['recipeid']." ORDER BY items.itemname;";
+                                                                        $reciperesult = mysqli_query($conn, $recipesql);
+                                                                        if (mysqli_num_rows($reciperesult) > 0) {
+                                                                            while ($reciperow = mysqli_fetch_assoc($reciperesult)) {
+                                                                                echo "<tr class='";
+                                                                                $diff = 0;
+                                                                                if ($reciperow['quantity'] >= $reciperow['ingredientquantity']) {
+                                                                                    echo "table-success";
+                                                                                } else {
+                                                                                    echo "bg-danger";
+                                                                                    $diff = $reciperow['ingredientquantity'] - $reciperow['quantity'];
+                                                                                    $isCraftable = false;
+                                                                                }
+                                                                                if ($reciperow['quantity'] == null) {
+                                                                                    echo "'><td>0/".$reciperow['ingredientquantity']."</td><td>";
+                                                                                } else {
+                                                                                    echo "'><td>".$reciperow['quantity']."/".$reciperow['ingredientquantity']."</td><td>";
+                                                                                }
+                                                                                if ($reciperow['type'] == 'b-craft') {
+                                                                                    echo "<b>";
+                                                                                }
+                                                                                if ($reciperow['quantity'] < $reciperow['ingredientquantity']) {
+                                                                                    echo "<a class='scavengerLink' target='_blank' href='https://jabberwock-isle.com/itemsearch.php?iid=".$reciperow['itemid']."'>";
+                                                                                }
+                                                                                echo $reciperow['itemname'];
+                                                                                if ($reciperow['quantity'] < $reciperow['ingredientquantity']) {
+                                                                                    echo "</a>";
+                                                                                }
+                                                                                if ($reciperow['type'] == 'b-craft') {
+                                                                                    echo " <i class='far fa-star'></i></b>";
+                                                                                    if ($diff > 0) {
+                                                                                        printNestedRecipe($conn, $userrow['userid'], $reciperow['ingredientid'], $diff);
+                                                                                    }
+                                                                                }
+                                                                                echo "</td></tr>";
+                                                                            }
+                                                                        }
+                                                                    ?>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <?php if ($isCraftable) { ?>
+                                                            <div class="list-group-item">
+                                                                <a id="craftAssignment<?php echo $row['itemid']; ?>" href="javascript:void(0)" data-toggle="modal" data-target="#confirmCraftingModal" class="btn btn-sm btn-block card-link craftAssignment">Craft Item</a>
+                                                            </div>
+                                                        <?php } ?>
+                                                    </div></div>
+                                        <?php   }
+                                            }
+                                        ?>
+                                    </div>
+                                </div>
                             </div>
-                <?php   }
-                    } else {
-                        echo "You are not crafting anything";
+                    <?
+                        }
                     }
-                ?>
-            </div>
-            <div class="col-lg-3 col-md-3">
-                <h4 class='inventorySectionTitle'>Gifts</h4>
-                <div style="display: flex; flex-direction: column">
-                    <?php
-                        $sql = "SELECT * FROM inventories,items WHERE inventories.itemid=items.itemid AND inventories.ownerid=".$userrow['userid']." AND type='a-gift' ORDER BY itemname;";
-                        $result = mysqli_query($conn, $sql);
-                        $inventoryMap = array();
-                        if (mysqli_num_rows($result) > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                $inventoryMap[$row['itemid']] = array("quantity"=>$row['quantity'], "itemid"=>$row['itemid'], "itemname"=>$row['itemname'], "itemimage"=>$row['itemimage']);
-                            }
-                        }
-                        $sql = "SELECT giftsinventories.studentid as studentid,giftsinventories.note as note,giftsinventories.giftid as giftid, items.itemid as itemid, items.itemname as itemname,items.itemimage as itemimage,students.studentname as studentname, students.studentsprite as studentsprite FROM giftsinventories LEFT JOIN items ON items.itemid=giftsinventories.itemid LEFT JOIN students ON students.studentid=giftsinventories.studentid WHERE giftsinventories.userid=".$userrow['userid']." ORDER BY giftsinventories.studentid,giftsinventories.giftid;";
-                        $result = mysqli_query($conn, $sql);
-                        $currStudentID = "";
-                        if (mysqli_num_rows($result) > 0) {
-                            echo '<div class="card" style="order:2">';
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                if (($currStudentID != "") && ($currStudentID != $row['studentid'])) {
-                                    echo '</div><div class="card" style="order:2">';
-                                    echo '<div class="giftCardTitleItem"><h5 class="giftCardTitle"><img src="studentsprites/originalsprites/'.$row['studentsprite'].'"> '.$row['studentname'].'</h5></div>';
-                                } else if ($currStudentID == "") {
-                                    echo '<div class="giftCardTitleItem"><h5 class="giftCardTitle"><img src="studentsprites/originalsprites/'.$row['studentsprite'].'"> '.$row['studentname'].'</h5></div>';
-                                }
-                                $currStudentID = $row['studentid'];
-                                echo '<div class="giftRow">';
-                                echo '<div class="giftImg"><img id="gift'.$row['giftid'].'img" src="'.$row['itemimage'].'"></div>';
-                                echo '<div class="flexFill giftInfo"><p><b id="gift'.$row['giftid'].'itemname">'.$row['itemname'].'</b></p><p id="gift'.$row['giftid'].'note" class="text-muted">'.$row['note'].'</p></div>';
-                                echo '<span id="gift'.$row['giftid'].'studentid" style="display: none">'.$currStudentID.'</span>';
-                                echo '<div class="giftEdit">';
-                                echo '<a id="gift'.$row['giftid'].'" class="giftEditModalTrigger" href="javascript:void(0)" data-toggle="modal" data-target="#editGiftModal"><i class="fas fa-pen"></i></a>';
-                                echo '<a id="giftRemove'.$row['giftid'].'" class="giftRemoveModalTrigger" href="javascript:void(0)" data-toggle="modal" data-target="#removeGiftModal"><i class="fas fa-trash-alt"></i></a>';
-                                echo '</div>';
-                                echo '</div>';
-                                $inventoryMap[$row['itemid']]['quantity'] -= 1;
-                            }
-                            echo '</div>';
-                        }
-                        $printedTitleCard = False;
-                        foreach ($inventoryMap as $inventoryRow) {
-                            if ($inventoryRow['quantity'] > 0) {
-                                if (!$printedTitleCard) {
-                                    echo '<div class="card" style="background-color: #f6d6e9; order: 1">';
-                                    echo '<div class="giftCardTitleItem" style="background-color: #FE2181 !important"><h5 class="giftCardTitle">Unassigned</h5></div>';
-                                    $printedTitleCard = True;
-                                }
-                                for ($j = 0; $j < $inventoryRow['quantity']; $j++) {
-                                    echo '<div class="giftRow">';
-                                    echo '<div class="giftImg"><img id="unassignedgift'.$inventoryRow['itemid'].'img" src="'.$inventoryRow['itemimage'].'"></div>';
-                                    echo '<div class="flexFill giftInfo"><p><b id="unassignedgift'.$inventoryRow['itemid'].'itemname">'.$inventoryRow['itemname'].'</b></p></div>';
-                                    echo '<div class="giftEdit">';
-                                    echo '<a id="unassignedgift'.$inventoryRow['itemid'].'" class="giftAssignModalTrigger" href="javascript:void(0)" data-toggle="modal" data-target="#assignGiftModal"><i class="fas fa-plus"></i></a>';
-                                    echo '</div>';
-                                    echo '</div>';
-                                }
-                            }
-                        }
-                        if ($printedTitleCard) {
-                            echo '</div>';
-                        }
                     ?>
                 </div>
             </div>
+            <?php
+                $sql = "SELECT * FROM students WHERE ownerid=".$_SESSION['user']->getID().";";
+                $result = mysqli_query($conn, $sql);
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<div class="tab-pane" id="student'.$row['studentid'].'" role="tabpanel" aria-labelledby="student'.$row['studentid'].'Tab">';
+                        if ($row['isAlive'] == 0) {
+                            echo '<p class="deadStudentTextRow">This student is dead.</p>';
+                        }
+                        if ($row['studentid'] == $primaryStudentRow['studentid']) {
+                            echo '<p class="primaryStudentTextRow">This is your primary student <a href="javascript:void(0)" data-toggle="modal" data-target="#primaryStudentModal">[?]</a></p>';
+                        }
+                        echo '<div class="tab-pane-content">';
+                        echo "<h4 class='inventorySectionTitle'>Gifts</h4>";
+                        $giftsql = "SELECT * FROM giftsinventories LEFT JOIN items ON items.itemid=giftsinventories.itemid WHERE studentid=".$row['studentid']." ORDER BY itemname;";
+                        $giftresult = mysqli_query($conn, $giftsql);
+                        if (mysqli_num_rows($giftresult) > 0) {
+                            echo '<div class="giftsWrapper">';
+                            while ($giftrow = mysqli_fetch_assoc($giftresult)) {
+                                echo '<div class="giftRow grayGiftRow">';
+                                echo '  <div class="horizontalFlex">';
+                                echo '    <a href="javascript:void(0)" data-toggle="tooltip" title="" data-original-title="'.$giftrow['itemname'].'"><div class="giftImg"><img id="gift'.$giftrow['giftid'].'img" src="'.$giftrow['itemimage'].'"></div></a>';
+                                echo '    <div class="giftEdit">';
+                                echo '      <a id="gift'.$giftrow['giftid'].'" class="giftEditModalTrigger" href="javascript:void(0)" data-toggle="modal" data-target="#editGiftModal"><i class="fas fa-pen"></i></a>';
+                                echo '      <a id="giftRemove'.$giftrow['giftid'].'" class="giftRemoveModalTrigger" href="javascript:void(0)" data-toggle="modal" data-target="#removeGiftModal"><i class="fas fa-trash-alt"></i></a>';
+                                echo '    </div>';
+                                echo '  </div>';
+                                echo '  <div class="giftInfo"><p id="gift'.$giftrow['giftid'].'note" class="text-muted">'.$giftrow['note'].'</p></div>';
+                                echo '  <span id="gift'.$giftrow['giftid'].'studentid" style="display: none">'.$giftrow['studentid'].'</span>';
+                                echo '</div>';
+                            }
+                            echo "</div>";
+                        }
+                        echo '</div></div>';
+                    }
+                }
+            ?>
         </div>
-<?
-    }
-}
-?>
+    </div>
+</div>
 
 <div class="modal fade" id="additemModal" tabindex="-1" role="dialog" aria-labelledby="additemModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -668,7 +917,7 @@ $(".craftableAssignment").click(function() {
     $("#newAssignment").val($(this).attr("id").replace("craftableAssignment",""));
 });
 $(".removeAssignment").click(function() {
-    $("#" + $(this).attr("id") + "Card").slideUp();
+    $("#" + $(this).attr("id") + "Card").parent().slideUp();
     $.post("removeAssignment.php", {removeAssignmentID: $(this).attr("id").replace("removeAssignment","")}, function(result) {
         //location.reload();
     });
@@ -683,7 +932,6 @@ $("#craftAssignmentConfirm").click(function() {
         location.reload();
     });
 });
-newGiftNote
 $("#newGiftNote").bind('input propertychange', function() {
     $("#newGiftNoteSize").text($("#newGiftNote").val().length + "/140");
     if ($("#newGiftNote").val().length > 140) {
@@ -722,10 +970,14 @@ $(".giftEditModalTrigger, .giftRemoveModalTrigger, .giftAssignModalTrigger").cli
         $("#assignGiftNoteSize").text($("#assignGiftNote").val().length + "/140");
     }
     $("#"+currType+"GiftModal_giftid").text(currGift);
+    console.log(currGift);
     $("#"+currType+"GiftModal_itemname").text($("#"+currGift+"itemname").text());
+    console.log($("#"+currGift+"itemname").text());
     $("#"+currType+"GiftModal_note").text($("#"+currGift+"note").text());
+    console.log($("#"+currGift+"note").text());
     $("#"+currType+"GiftNote").val("");
     $("#"+currType+"GiftModal_giftImg").css("background-image","url("+$("#"+currGift+"img").prop("src")+")");
+    console.log("url("+$("#"+currGift+"img").prop("src")+")");
 });
 $("#editGiftConfirm").click(function() {
     if ($("#newGiftNote").val().length <= 140) {
@@ -734,7 +986,9 @@ $("#editGiftConfirm").click(function() {
             studentid: $("#changeGiftStudent").val(),
             newgiftnote: $("#newGiftNote").val()
         }, function(result) {
-            location.reload();
+            $("#"+$("#editGiftModal_giftid").text()+"note").text($("#newGiftNote").val());
+            //location.reload();
+            $('#editGiftModal').modal('toggle');
         });
     }
 });
