@@ -2,7 +2,6 @@
 require('../util/User.php');
 session_start();
 include_once('../HIDDEN/DB_CONNECTIONS.php');
-global $conn;
 $conn = OpenJabberwockCon();
 ?>
 
@@ -726,6 +725,4 @@ if (isset($_SESSION['user'])) { ?>
         </div>
         <div class="buffer"></div>
 <?php }
-
-CloseCon($conn);
 ?>
