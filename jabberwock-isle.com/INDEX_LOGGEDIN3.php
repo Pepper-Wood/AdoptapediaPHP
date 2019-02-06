@@ -187,21 +187,20 @@ date_default_timezone_set($usertimezone);
 
 <div class="row">
     <div class="col-md-3">
-        <p>Student of the Month</p>
         <?php
             $configs = include('adminconfig.php');
             $studentofthemonthid = (int) $configs['studentofthemonthid'];
             $studentofthemonthsql = mysqli_query($conn, "SELECT * FROM students WHERE studentid=".$studentofthemonthid.";");
             $studentofthemonthrow = mysqli_fetch_assoc($studentofthemonthsql);
         ?>
+        <p>Student of the Month</p>
         <div class="card birthdayCard horizontalFlex">
             <img src="studentsprites/originalsprites/<?php echo $studentofthemonthrow['studentsprite']; ?>">
             <div class="birthdayInfo">
                 <div><?php echo $studentofthemonthrow['studentname']; ?></div>
             </div>
         </div>
-        <img class="fullWidth card" src="https://img00.deviantart.net/dcad/i/2018/305/5/d/tempstudentofthemonth_by_pepper_wood-dcqxwcq.png">
-        <p>Group Events</p>
+        <p>Birthdays</p>
         <?php
         $birthdaysql = "SELECT studentname,studentsprite,birthday FROM students WHERE MONTH(birthday)=".date('m')." ORDER BY birthday;";
         $birthdayresult = mysqli_query($conn, $birthdaysql);
@@ -216,7 +215,6 @@ date_default_timezone_set($usertimezone);
             }
         }
         ?>
-        <p>Group Events</p>
     </div>
     <div class="col-md-9">
         <ul class="nav nav-tabs tabNav" id="myTab" role="tablist">
