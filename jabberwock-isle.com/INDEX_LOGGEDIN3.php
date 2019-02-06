@@ -258,8 +258,7 @@ date_default_timezone_set($usertimezone);
                                     </div>
                                     <div style="display: flex; flex-direction: column">
                                         <?php
-                                            $unassignedgiftssql = "SELECT items.itemid, items.itemname, items.itemimage, inventories.quantity, inventories.quantity-(SELECT COUNT(*) FROM giftsinventories WHERE giftsinventories.userid=".$userrow['userid']." AND giftsinventories.itemid=items.itemid) AS frequency FROM inventories LEFT JOIN items ON inventories.itemid=items.itemid WHERE items.type='a-gift' AND inventories.ownerid=".$userrow['userid']." ORDER BY leftoverquantity DESC, inventories.itemid;";
-                                            echo $unassignedgiftssql;
+                                            $unassignedgiftssql = "SELECT items.itemid, items.itemname, items.itemimage, inventories.quantity, inventories.quantity-(SELECT COUNT(*) FROM giftsinventories WHERE giftsinventories.userid=".$userrow['userid']." AND giftsinventories.itemid=items.itemid) AS frequency FROM inventories LEFT JOIN items ON inventories.itemid=items.itemid WHERE items.type='a-gift' AND inventories.ownerid=".$userrow['userid']." ORDER BY frequency DESC, inventories.itemid;";
                                             $unassignedgiftsresult = mysqli_query($conn, $unassignedgiftssql);
                                             $printedTitleCard = False;
                                             if (mysqli_num_rows($unassignedgiftsresult) > 0) {
