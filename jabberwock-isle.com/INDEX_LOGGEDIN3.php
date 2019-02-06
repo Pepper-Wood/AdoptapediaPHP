@@ -258,13 +258,7 @@ date_default_timezone_set($usertimezone);
                                     </div>
                                     <div style="display: flex; flex-direction: column">
                                         <?php
-                                            $kathryntest1 = "SELECT * FROM inventories LEFT JOIN items ON inventories.itemid=items.itemid WHERE items.type='a-gift' AND inventories.ownerid=1 ORDER BY inventories.itemid;";
-                                            $kathryntest1result = mysqli_query($conn, $kathryntest1);
-                                            $kathryntest2 = "SELECT * FROM giftsinventories WHERE userid=1 ORDER BY itemid;";
-                                            $kathryntest2result = mysqli_query($conn, $kathryntest2);
-                                            var_dump($kathryntest1result);
-
-                                            $unassignedgiftssql = "SELECT g.itemid, ((SELECT inventories.quantity FROM inventories WHERE inventories.itemid=g.itemid AND inventories.ownerid=g.userid)-COUNT(g.itemid)) AS frequency, items.itemname, items.itemimage FROM giftsinventories g LEFT JOIN items ON items.itemid=g.itemid WHERE g.userid=".$userrow['userid']." GROUP BY g.itemid ORDER BY g.itemid;";
+                                            $unassignedgiftssql = "SELECT items.itemid, items.itemname, items.itemimage, inventories.quantity, inventories.quantity-(SELECT COUNT(*) FROM giftsinventories WHERE giftsinventories.userid=".$userrow['userid']." AND giftsinventories.itemid=items.itemid) AS frequency FROM inventories LEFT JOIN items ON inventories.itemid=items.itemid WHERE items.type='a-gift' AND inventories.ownerid=".$userrow['userid']." ORDER BY leftoverquantity DESC, inventories.itemid;";
                                             $unassignedgiftsresult = mysqli_query($conn, $unassignedgiftssql);
                                             $printedTitleCard = False;
                                             if (mysqli_num_rows($unassignedgiftsresult) > 0) {
