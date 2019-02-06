@@ -957,10 +957,14 @@ $(".giftEditModalTrigger, .giftRemoveModalTrigger, .giftAssignModalTrigger").cli
         $("#assignGiftNoteSize").text($("#assignGiftNote").val().length + "/140");
     }
     $("#"+currType+"GiftModal_giftid").text(currGift);
+    console.log(currGift);
     $("#"+currType+"GiftModal_itemname").text($("#"+currGift+"itemname").text());
+    console.log($("#"+currGift+"itemname").text());
     $("#"+currType+"GiftModal_note").text($("#"+currGift+"note").text());
+    console.log($("#"+currGift+"note").text());
     $("#"+currType+"GiftNote").val("");
     $("#"+currType+"GiftModal_giftImg").css("background-image","url("+$("#"+currGift+"img").prop("src")+")");
+    console.log("url("+$("#"+currGift+"img").prop("src")+")");
 });
 $("#editGiftConfirm").click(function() {
     if ($("#newGiftNote").val().length <= 140) {
