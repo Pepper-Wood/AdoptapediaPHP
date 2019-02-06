@@ -272,7 +272,7 @@ date_default_timezone_set($usertimezone);
                                                         for ($j = 0; $j < $unassignedgiftsrow['frequency']; $j++) {
                                                             echo '<div class="giftRow">';
                                                             echo '  <div class="horizontalFlex">';
-                                                            echo '    <div class="giftImg"><img id="unassignedgift'.$unassignedgiftsrow['giftid'].'img" src="'.$unassignedgiftsrow['itemimage'].'"></div>';
+                                                            echo '    <div class="giftImg"><img id="unassignedgift'.$unassignedgiftsrow['itemid'].'img" src="'.$unassignedgiftsrow['itemimage'].'"></div>';
                                                             echo '    <div style="margin-right: 20px">';
                                                             echo '      <span id="unassignedgift'.$unassignedgiftsrow['itemid'].'itemname">'.$unassignedgiftsrow['itemname'].'</span>';
                                                             echo '      <a id="unassignedgift'.$unassignedgiftsrow['itemid'].'" class="giftAssignModalTrigger" href="javascript:void(0)" data-toggle="modal" data-target="#assignGiftModal"><i class="fas fa-plus"></i></a>';
